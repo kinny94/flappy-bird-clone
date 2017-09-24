@@ -54,6 +54,8 @@ public class FlappyBird extends ApplicationAdapter {
 		batch = new SpriteBatch();
         background = new Texture("bg.png");
         gameover = new Texture("gameover.png");
+        Gdx.app.log("Height", String.valueOf(Gdx.graphics.getHeight()));
+        gap = (float) (Gdx.graphics.getHeight() / 3.2); // Mathmatically Calculated gap 23 Percent
 
        // shapeRenderer = new ShapeRenderer(); // allow us to render shape
         birdCircle = new Circle();
@@ -83,7 +85,7 @@ public class FlappyBird extends ApplicationAdapter {
 	public void startGame(){
         birdY = Gdx.graphics.getHeight()/2 - birds[0].getHeight()/2;
         for(int i=0; i<numberOfTubes; i++){
-            tubeOffset[i] = (randomNumberGenerator.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - gap - 800);
+            tubeOffset[i] = (randomNumberGenerator.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - gap - gap);
             tubeX[i] = Gdx.graphics.getWidth() / 2 - topTube.getWidth() / 2 + Gdx.graphics.getWidth()  + (i * distanceBetweenTubes);
 
             topTubeRectangles[i] = new Rectangle();
@@ -124,7 +126,7 @@ public class FlappyBird extends ApplicationAdapter {
 
                 if(tubeX[i] < -topTube.getWidth()){
                     tubeX[i] += numberOfTubes * distanceBetweenTubes;
-                    tubeOffset[i] = (randomNumberGenerator.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - gap - 800);
+                    tubeOffset[i] = (randomNumberGenerator.nextFloat() - 0.5f) * (Gdx.graphics.getHeight() - gap - gap);
                 }else{
                     tubeX[i] = tubeX[i] - tubeVelocity;
 
